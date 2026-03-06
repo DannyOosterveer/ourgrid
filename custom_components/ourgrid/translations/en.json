@@ -1,0 +1,85 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Set up OurGrid",
+        "description": "Connect your OurGrid account to monitor grid congestion signals. You can find your credentials in the OurGrid app under 'Devices > Your home automation'.",
+        "data": {
+          "realm": "Region",
+          "client_id": "Client ID",
+          "client_secret": "Client Secret",
+          "challenge_asset_id": "Challenge Asset ID",
+          "meter_asset_id": "Meter Asset ID"
+        },
+        "data_description": {
+          "realm": "Your OurGrid region name (e.g. arnhem)",
+          "client_id": "Your client ID",
+          "client_secret": "Your client secret / password",
+          "challenge_asset_id": "The OpenRemote asset ID for challenge data",
+          "meter_asset_id": "The OpenRemote asset ID for meter data"
+        }
+      },
+      "reconfigure": {
+        "title": "Reconfigure OurGrid",
+        "data": {
+          "realm": "Region",
+          "client_id": "Client ID",
+          "client_secret": "Client Secret",
+          "challenge_asset_id": "Challenge Asset ID",
+          "meter_asset_id": "Meter Asset ID"
+        },
+        "data_description": {
+          "realm": "Your OurGrid region name (e.g. arnhem)",
+          "client_id": "Your client ID",
+          "client_secret": "Your client secret / password",
+          "challenge_asset_id": "The OpenRemote asset ID for challenge data",
+          "meter_asset_id": "The OpenRemote asset ID for meter data"
+        }
+      },
+      "reauth_confirm": {
+        "title": "Re-authenticate OurGrid",
+        "data": {
+          "client_id": "Client ID",
+          "client_secret": "Client Secret"
+        }
+      }
+    },
+    "error": {
+      "cannot_connect": "Failed to connect to the server. Check your internet connection.",
+      "invalid_auth": "Invalid Client ID or Client Secret.",
+      "unknown": "An unexpected error occurred."
+    },
+    "abort": {
+      "already_configured": "This OurGrid instance is already configured.",
+      "reauth_successful": "Re-authentication was successful."
+    }
+  },
+  "entity": {
+    "sensor": {
+      "challenge_start": { "name": "Challenge Start" },
+      "challenge_end": { "name": "Challenge End" },
+      "challenge_points_exchange_rate": { "name": "Exchange Rate" },
+      "challenge_power_limit": { "name": "Challenge Power Limit" },
+      "power": { "name": "Current Power" },
+      "challenge_earnings": { "name": "Expected Earnings" },
+      "challenges_joined": { "name": "Challenges Joined" },
+      "total_points": { "name": "Total Points" },
+      "challenge_points_current": { "name": "Last Challenge Points" },
+      "challenge_points": { "name": "Challenge Points" },
+      "peak_points": { "name": "Peaks Avoided" },
+      "connection_quality": { "name": "Connection Quality" },
+      "wifi_signal": { "name": "Wi-Fi Signal" }
+    },
+    "binary_sensor": {
+      "challenge_status": { "name": "Challenge Active" },
+      "connection_status": { "name": "Connection Status" }
+    },
+    "button": {
+      "challenge_join_button": { "name": "Join Challenge" }
+    }
+  },
+  "exceptions": {
+    "auth_failed": { "message": "OurGrid authentication failed. Please check your settings." },
+    "api_error": { "message": "OurGrid API error. Check logs for details." }
+  }
+}

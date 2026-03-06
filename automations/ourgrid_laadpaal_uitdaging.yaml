@@ -1,0 +1,44 @@
+alias: OurGrid - Laadpaal pauzeren tijdens uitdaging
+description: >
+  Accepteert automatisch een OurGrid-uitdaging, zet de laadstroom op 0 ampère
+  bij de starttijd en herstelt deze na afloop.
+trigger:
+  - platform: state
+    entity_id: binary_sensor.ourgrid_uitdaging_actief
+    to: "on"
+    id: available
+  - platform: time
+    at: sensor.ourgrid_challenge_start
+    id: start
+  - platform: time
+    at: sensor.ourgrid_challenge_eind
+    id: stop
+condition: []
+action:
+  - choose:
+      - conditions:
+          - condition: trigger
+            id: available
+        sequence:
+          - service: button.press
+            target:
+              entity_id: button.ourgrid_uitdaging_accepteren
+      - conditions:
+          - condition: trigger
+            id: start
+        sequence:
+          - service: number.set_value
+            target:
+              entity_id: number.alfen_laadpaal_max_station_current
+            data:
+              value: 0
+      - conditions:
+          - condition: trigger
+            id: stop
+        sequence:
+          - service: number.set_value
+            target:
+              entity_id: number.alfen_laadpaal_max_station_current
+            data:
+              value: 16
+mode: single

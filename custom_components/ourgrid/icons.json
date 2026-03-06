@@ -1,0 +1,24 @@
+{
+  "entity": {
+    "sensor": {
+      "challenge_start": { "default": "mdi:clock-start" },
+      "challenge_end": { "default": "mdi:clock-end" },
+      "challenge_points_exchange_rate": { "default": "mdi:currency-eur" },
+      "power": { "default": "mdi:home-lightning-bolt" },
+      "challenges_joined": { "default": "mdi:counter" },
+      "total_points": { "default": "mdi:trophy" },
+      "challenge_points_current": { "default": "mdi:trophy" },
+      "challenge_points": { "default": "mdi:trophy" },
+      "peak_points": { "default": "mdi:chart-bell-curve" },
+      "connection_quality": { "default": "mdi:signal" },
+      "wifi_signal": { "default": "mdi:wifi" }
+    },
+    "binary_sensor": {
+      "challenge_status": { "default": "mdi:lightning-bolt-circle" },
+      "connection_status": { "default": "mdi:lan-connect" }
+    },
+    "button": {
+      "challenge_join_button": { "default": "mdi:handshake" }
+    }
+  }
+}

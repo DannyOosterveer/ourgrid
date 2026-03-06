@@ -1,0 +1,142 @@
+blueprint:
+  name: OurGrid - Zendure SolarFlow ontladen tijdens uitdaging
+  description: >
+    Accepteert automatisch een OurGrid-uitdaging en stuurt de Zendure SolarFlow
+    batterij aan om het verbruik onder de vermogenslimiet te houden.
+    Elke minuut wordt het ontlaadvermogen herberekend op basis van de P1-meter.
+    Na de uitdaging schakelt de batterij terug naar "Nul op de meter".
+  domain: automation
+  author: OurGrid
+  input:
+    zendure_power_entity:
+      name: Zendure vermogen entiteit
+      description: >
+        De input_number entiteit voor het handmatig vermogen
+        (negatief = ontladen, positief = opladen).
+      default: input_number.zendure_2400_ac_handmatig_vermogen
+      selector:
+        entity:
+    zendure_mode_entity:
+      name: Zendure modus entiteit
+      description: De input_select entiteit waarmee je de bedrijfsmodus instelt.
+      default: input_select.zendure_2400_ac_modus_selecteren
+      selector:
+        entity:
+    p1_sensor:
+      name: P1 vermogen sensor
+      description: >
+        Sensor met het actuele netvermogen in watt.
+        Positief = afname uit het net, negatief = teruglevering.
+      default: sensor.p1_meter_power
+      selector:
+        entity:
+          domain: sensor
+    buffer_watts:
+      name: Buffer onder de limiet (watt)
+      description: >
+        Hoeveel watt onder de uitdagingslimiet de batterij moet sturen
+        om kleine uitschieters op te vangen.
+      default: 100
+      selector:
+        number:
+          min: 0
+          max: 500
+          unit_of_measurement: W
+          mode: slider
+
+variables:
+  p1: !input p1_sensor
+  buffer: !input buffer_watts
+
+trigger:
+  - platform: state
+    entity_id: binary_sensor.ourgrid_challenge_status
+    to: "on"
+    id: available
+  - platform: time
+    at: sensor.ourgrid_challenge_start
+    id: start
+  - platform: time_pattern
+    minutes: /1
+    id: loop
+  - platform: time
+    at: sensor.ourgrid_challenge_end
+    id: stop
+
+action:
+  - choose:
+
+      - conditions:
+          - condition: trigger
+            id: available
+        sequence:
+          - service: button.press
+            target:
+              entity_id: button.ourgrid_challenge_join_button
+
+      - conditions:
+          - condition: trigger
+            id: start
+        sequence:
+          - service: input_select.select_option
+            target:
+              entity_id: !input zendure_mode_entity
+            data:
+              option: Handmatig
+          - service: input_number.set_value
+            target:
+              entity_id: !input zendure_power_entity
+            data:
+              value: >
+                {% set p1_val = states(p1) | float(0) %}
+                {% set limit = states('sensor.ourgrid_challenge_power_limit') | float(0) %}
+                {% set target = limit - buffer %}
+                {% set discharge = [p1_val - target, 0] | max %}
+                {% set capped = [discharge, 2400] | min | round(0) | int %}
+                {{ capped * -1 }}
+
+      - conditions:
+          - condition: trigger
+            id: loop
+          - condition: template
+            value_template: >
+              {% set start = states('sensor.ourgrid_challenge_start') %}
+              {% set end = states('sensor.ourgrid_challenge_end') %}
+              {% if start not in ['unknown', 'unavailable'] and end not in ['unknown', 'unavailable'] %}
+                {% set now_ts = now().timestamp() %}
+                {% set start_ts = as_timestamp(start) | float(0) %}
+                {% set end_ts = as_timestamp(end) | float(0) %}
+                {{ start_ts < now_ts < end_ts }}
+              {% else %}
+                false
+              {% endif %}
+        sequence:
+          - service: input_number.set_value
+            target:
+              entity_id: !input zendure_power_entity
+            data:
+              value: >
+                {% set p1_val = states(p1) | float(0) %}
+                {% set limit = states('sensor.ourgrid_challenge_power_limit') | float(0) %}
+                {% set target = limit - buffer %}
+                {% set discharge = [p1_val - target, 0] | max %}
+                {% set capped = [discharge, 2400] | min | round(0) | int %}
+                {{ capped * -1 }}
+
+      - conditions:
+          - condition: trigger
+            id: stop
+        sequence:
+          - service: input_number.set_value
+            target:
+              entity_id: !input zendure_power_entity
+            data:
+              value: 0
+          - service: input_select.select_option
+            target:
+              entity_id: !input zendure_mode_entity
+            data:
+              option: Nul op de meter
+
+mode: single
+max_exceeded: silent

@@ -1,0 +1,85 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "OurGrid instellen",
+        "description": "Verbind je OurGrid-account om netcongestiesignalen te ontvangen. Je vindt jouw gegevens in de OurGrid app in de instructies die je ziet onder 'Apparaten > Jouw huis automatisering'.",
+        "data": {
+          "realm": "Regio",
+          "client_id": "Client ID",
+          "client_secret": "Client Secret",
+          "challenge_asset_id": "Challenge Asset ID",
+          "meter_asset_id": "Meter Asset ID"
+        },
+        "data_description": {
+          "realm": "De naam van je OurGrid-regio (bijv. arnhem)",
+          "client_id": "Je client ID",
+          "client_secret": "Je client secret / wachtwoord",
+          "challenge_asset_id": "Het OpenRemote asset ID voor de uitdagingsdata",
+          "meter_asset_id": "Het OpenRemote asset ID voor de meetdata"
+        }
+      },
+      "reconfigure": {
+        "title": "OurGrid opnieuw configureren",
+        "data": {
+          "realm": "Regio",
+          "client_id": "Client ID",
+          "client_secret": "Client Secret",
+          "challenge_asset_id": "Challenge Asset ID",
+          "meter_asset_id": "Meter Asset ID"
+        },
+        "data_description": {
+          "realm": "De naam van je OurGrid-regio (bijv. arnhem)",
+          "client_id": "Je client ID",
+          "client_secret": "Je client secret / wachtwoord",
+          "challenge_asset_id": "Het OpenRemote asset ID voor de uitdagingsdata",
+          "meter_asset_id": "Het OpenRemote asset ID voor de meetdata"
+        }
+      },
+      "reauth_confirm": {
+        "title": "OurGrid opnieuw authenticeren",
+        "data": {
+          "client_id": "Client ID",
+          "client_secret": "Client Secret"
+        }
+      }
+    },
+    "error": {
+      "cannot_connect": "Kan geen verbinding maken met de server. Controleer je internetverbinding.",
+      "invalid_auth": "Ongeldige Client ID of Client Secret.",
+      "unknown": "Er is een onverwachte fout opgetreden."
+    },
+    "abort": {
+      "already_configured": "Deze OurGrid-instantie is al geconfigureerd.",
+      "reauth_successful": "Herverificatie geslaagd."
+    }
+  },
+  "entity": {
+    "sensor": {
+      "challenge_start": { "name": "Uitdaging start" },
+      "challenge_end": { "name": "Uitdaging einde" },
+      "challenge_points_exchange_rate": { "name": "Wisselkoers" },
+      "challenge_power_limit": { "name": "Uitdaging vermogenslimiet" },
+      "power": { "name": "Huidig verbruik" },
+      "challenge_earnings": { "name": "Verwachte opbrengst" },
+      "challenges_joined": { "name": "Uitdagingen deelgenomen" },
+      "total_points": { "name": "Totaal punten" },
+      "challenge_points_current": { "name": "Punten laatste uitdaging" },
+      "challenge_points": { "name": "Uitdagingspunten" },
+      "peak_points": { "name": "Pieken vermeden" },
+      "connection_quality": { "name": "Verbindingskwaliteit" },
+      "wifi_signal": { "name": "Wifi-signaal" }
+    },
+    "binary_sensor": {
+      "challenge_status": { "name": "Uitdaging actief" },
+      "connection_status": { "name": "Verbindingsstatus" }
+    },
+    "button": {
+      "challenge_join_button": { "name": "Uitdaging accepteren" }
+    }
+  },
+  "exceptions": {
+    "auth_failed": { "message": "OurGrid-authenticatie mislukt. Controleer je instellingen." },
+    "api_error": { "message": "OurGrid API-fout. Controleer de logs voor meer informatie." }
+  }
+}
