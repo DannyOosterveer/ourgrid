@@ -8,10 +8,17 @@ Met deze integratie koppel je OurGrid aan Home Assistant. OurGrid is een Nederla
 ## Wat doet de integratie?
 
 - Toont wanneer er een uitdaging actief is
-- Laat je via een knop (automatisch) deelnemen aan de uitdaging
+- Laat je via een knop deelnemen aan de uitdaging
 - Toont de start- en eindtijd van de uitdaging
 - Toont de vermogenslimiet en je actuele verbruik
 - Toont je punten, huidige wisselkoers en verwachte opbrengst
+
+## Wat kan je er mee?
+
+Dankzij deze integratie kun je automatisch meedoen aan uitdagingen om netcongestie in de wijk te voorkomen. Dat doe je met deze integratie en een automatisering. Dat ziet er zo uit:
+1. Er komt een uitdaging binnen, incl. start- en eindtijd, met een vermogenslimiet waar jij je verbruik onder moet houden
+2. Je accepteert de uitdaging via de knop
+3. Je zet bijvoorbeeld je laadpaal naar 0 watt of laat je thuisbatterij precies genoeg ontladen zodat je onder de vermogenslimiet blijft. Voor deze twee voorbeelden vind je hieronder een automatisering.
 
 ![OurGrid apparaat in Home Assistant](https://github.com/dannyoosterveer/ourgrid/blob/main/custom_components/ourgrid/brand/icon.png?raw=true)
 
@@ -70,7 +77,7 @@ Kopieer onderstaande YAML naar Home Assistant via **Instellingen → Automatiser
 
 ### Laadpaal pauzeren tijdens uitdaging
 
-Accepteert automatisch een uitdaging, zet de laadstroom op 0A bij de starttijd en herstelt hem daarna. Pas `number.alfen_laadpaal_max_station_current` en de herstelde waarde (`16`) aan naar jouw situatie.
+Accepteert automatisch een uitdaging, zet de laadstroom van je laadpaal op 0A bij de starttijd en herstelt hem daarna. In dit voorbeeld werkt hij met mijn Alfen laadpaal. Pas `number.alfen_laadpaal_max_station_current` aan naar jouw laadpaal. Na de uitdaging zet hij het ampère van de laadpaal weer op 16A.
 
 ```yaml
 alias: OurGrid - Laadpaal pauzeren tijdens uitdaging
@@ -119,9 +126,9 @@ action:
 mode: single
 ```
 
-### Zendure SolarFlow ontladen tijdens uitdaging
+### Met een Zendure SolarFlow thuisbatterij ontladen tijdens netcongestie
 
-Accepteert automatisch een uitdaging en stuurt de Zendure SolarFlow 2400 AC batterij aan om het verbruik onder de vermogenslimiet te houden. Elke minuut wordt het ontlaadvermogen herberekend op basis van de P1-meter. Vereist de [Gielz1986/Zendure-HA-zenSDK](https://github.com/Gielz1986/Zendure-HA-zenSDK) integratie.
+Accepteert automatisch een uitdaging en stuurt de Zendure SolarFlow 2400 AC batterij aan om het verbruik onder de vermogenslimiet van de uitdaging te houden. Elke minuut wordt het ontlaadvermogen herberekend op basis van de P1-meter. Is gebouwd op de [Gielz1986/Zendure-HA-zenSDK](https://github.com/Gielz1986/Zendure-HA-zenSDK) integratie.
 
 ```yaml
 alias: OurGrid - Zendure SolarFlow ontladen tijdens uitdaging
