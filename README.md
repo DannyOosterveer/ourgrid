@@ -1,6 +1,6 @@
 # OurGrid — Home Assistant Integratie
 
-[![hacs_badge](https://img.shields.io/badge/HACS-Default-orange.svg)](https://github.com/hacs/integration)
+[![hacs_badge](https://img.shields.io/badge/HACS-Custom-orange.svg)](https://github.com/hacs/integration)
 ![GitHub release](https://img.shields.io/github/v/release/dannyoosterveer/ourgrid)
 
 Met deze integratie koppel je OurGrid aan Home Assistant. OurGrid is een Nederlandse dienst die beloningen uitkeert wanneer je jouw energieverbruik verlaagt tijdens piekmomenten op het elektriciteitsnet (netcongestie).
@@ -29,9 +29,13 @@ Dankzij deze integratie kun je automatisch meedoen aan uitdagingen om netcongest
 
 ## Installatie via HACS
 
+> **Let op:** Deze integratie is nog niet opgenomen in de officiële HACS-store. Voeg de repository handmatig toe als custom repository.
+
 1. Ga in Home Assistant naar **HACS → Integraties**
-2. Klik op de **+** knop en zoek op `OurGrid`
-3. Installeer de integratie en herstart Home Assistant
+2. Klik op de **⋮** (drie puntjes) rechtsbovenin en kies **Custom repositories**
+3. Voeg `https://github.com/DannyOosterveer/ourgrid` toe als categorie **Integration**
+4. Zoek op `OurGrid` en installeer de integratie
+5. Herstart Home Assistant
 
 ### Handmatige installatie
 
