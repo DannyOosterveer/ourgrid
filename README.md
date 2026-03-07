@@ -176,7 +176,7 @@ action:
             data:
               value: >
                 {% set p1 = states('sensor.p1_meter_power') | float(0) %}
-                {% set limit = states('sensor.ourgrid_challenge_power_limit') | float(0) %}
+                {% set limit = states('sensor.ourgrid_uitdaging_vermogenslimiet') | float(0) %}
                 {% set target = limit - 100 %}
                 {% set discharge = [p1 - target, 0] | max %}
                 {% set capped = [discharge, 2400] | min | round(0) | int %}
@@ -203,7 +203,7 @@ action:
             data:
               value: >
                 {% set p1 = states('sensor.p1_meter_power') | float(0) %}
-                {% set limit = states('sensor.ourgrid_challenge_power_limit') | float(0) %}
+                {% set limit = states('sensor.ourgrid_uitdaging_vermogenslimiet') | float(0) %}
                 {% set target = limit - 100 %}
                 {% set discharge = [p1 - target, 0] | max %}
                 {% set capped = [discharge, 2400] | min | round(0) | int %}
