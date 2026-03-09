@@ -6,6 +6,8 @@ import logging
 from dataclasses import dataclass
 from datetime import datetime, timedelta, timezone
 
+from homeassistant.util import dt as dt_util
+
 from homeassistant.config_entries import ConfigEntry
 from homeassistant.core import HomeAssistant
 from homeassistant.exceptions import ConfigEntryAuthFailed
@@ -95,7 +97,7 @@ def _parse_datetime(raw: dict, attr_name: str) -> datetime | None:
         try:
             dt = datetime.fromisoformat(val)
             if dt.tzinfo is None:
-                dt = dt.replace(tzinfo=timezone.utc)
+                dt = dt.replace(tzinfo=dt_util.DEFAULT_TIME_ZONE)
             return dt
         except ValueError:
             _LOGGER.warning("Cannot parse datetime value: %s", val)
