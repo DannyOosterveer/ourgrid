@@ -94,10 +94,10 @@ trigger:
     to: "on"
     id: available
   - platform: time
-    at: sensor.ourgrid_challenge_start
+    at: sensor.ourgrid_uitdaging_start
     id: start
   - platform: time
-    at: sensor.ourgrid_challenge_eind
+    at: sensor.ourgrid_uitdaging_einde
     id: stop
 condition: []
 action:
@@ -147,13 +147,13 @@ trigger:
     to: "on"
     id: available
   - platform: time
-    at: sensor.ourgrid_challenge_start
+    at: sensor.ourgrid_uitdaging_start
     id: start
   - platform: time_pattern
     minutes: /1
     id: loop
   - platform: time
-    at: sensor.ourgrid_challenge_eind
+    at: sensor.ourgrid_uitdaging_einde
     id: stop
 condition: []
 action:
@@ -190,8 +190,8 @@ action:
             id: loop
           - condition: template
             value_template: >
-              {% set start = states('sensor.ourgrid_challenge_start') %}
-              {% set end = states('sensor.ourgrid_challenge_eind') %}
+              {% set start = states('sensor.ourgrid_uitdaging_start') %}
+              {% set end = states('sensor.ourgrid_uitdaging_einde') %}
               {% if start not in ['unknown', 'unavailable'] and end not in ['unknown', 'unavailable'] %}
                 {% set now_ts = now().timestamp() %}
                 {% set start_ts = as_timestamp(start) | float(0) %}
