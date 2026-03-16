@@ -73,6 +73,7 @@ Na installatie verschijnt er één apparaat **OurGrid** met de volgende entiteit
 | Uitdagingspunten (huidig) | Sensor | Punten van de huidige uitdaging |
 | Uitdagingspunten | Sensor | Uitdagingspunten teller |
 | Pieken vermeden | Sensor | Aantal vermeden pieken |
+| Uitdaging status | Sensor | Ruwe statuswaarde van de uitdaging (`noChallenge`, `joinChallenge`, `joinedChallenge`, `activeChallenge`, `inactiveChallenge`) |
 | Uitdaging accepteren | Button | Druk om deel te nemen aan een uitdaging |
 
 ## Automatiseringen
