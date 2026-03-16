@@ -10,6 +10,8 @@
       "challenge_points_current": { "default": "mdi:trophy" },
       "challenge_points": { "default": "mdi:trophy" },
       "peak_points": { "default": "mdi:chart-bell-curve" },
+      "challenge_status": { "default": "mdi:lightning-bolt-circle" },
+      "challenge_power_limit": { "default": "mdi:flash-triangle" },
       "connection_quality": { "default": "mdi:signal" },
       "wifi_signal": { "default": "mdi:wifi" }
     },

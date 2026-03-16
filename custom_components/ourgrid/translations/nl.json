@@ -67,6 +67,7 @@
       "challenge_points_current": { "name": "Punten laatste uitdaging" },
       "challenge_points": { "name": "Uitdagingspunten" },
       "peak_points": { "name": "Pieken vermeden" },
+      "challenge_status": { "name": "Uitdaging status" },
       "connection_quality": { "name": "Verbindingskwaliteit" },
       "wifi_signal": { "name": "Wifi-signaal" }
     },

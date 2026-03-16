@@ -114,6 +114,11 @@ SENSOR_DESCRIPTIONS: tuple[OurGridSensorEntityDescription, ...] = (
         suggested_display_precision=0,
         value_fn=lambda data: data.peak_points,
     ),
+    OurGridSensorEntityDescription(
+        key="challenge_status",
+        translation_key="challenge_status",
+        value_fn=lambda data: data.challenge_status,
+    ),
     # Connectivity (diagnostic)
     OurGridSensorEntityDescription(
         key="connection_quality",
