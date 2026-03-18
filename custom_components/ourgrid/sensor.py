@@ -24,6 +24,14 @@ from homeassistant.helpers.typing import StateType
 from .coordinator import OurGridCoordinator, OurGridData
 from .entity import OurGridEntity
 
+_STATUS_MAP: dict[str, str] = {
+    "noChallenge": "no_challenge",
+    "joinChallenge": "join_challenge",
+    "joinedChallenge": "joined_challenge",
+    "activeChallenge": "active_challenge",
+    "inactiveChallenge": "inactive_challenge",
+}
+
 
 @dataclass(frozen=True, kw_only=True)
 class OurGridSensorEntityDescription(SensorEntityDescription):
@@ -118,8 +126,8 @@ SENSOR_DESCRIPTIONS: tuple[OurGridSensorEntityDescription, ...] = (
         key="challenge_status",
         translation_key="challenge_status",
         device_class=SensorDeviceClass.ENUM,
-        options=["noChallenge", "joinChallenge", "joinedChallenge", "activeChallenge", "inactiveChallenge"],
-        value_fn=lambda data: data.challenge_status,
+        options=["no_challenge", "join_challenge", "joined_challenge", "active_challenge", "inactive_challenge"],
+        value_fn=lambda data: _STATUS_MAP.get(data.challenge_status) if data.challenge_status else None,
     ),
     # Connectivity (diagnostic)
     OurGridSensorEntityDescription(

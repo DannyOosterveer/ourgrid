@@ -70,11 +70,11 @@
       "challenge_status": {
         "name": "Challenge Status",
         "state": {
-          "noChallenge": "No challenge",
-          "joinChallenge": "Challenge available",
-          "joinedChallenge": "Participation confirmed",
-          "activeChallenge": "Challenge in progress",
-          "inactiveChallenge": "Connection lost"
+          "no_challenge": "No challenge",
+          "join_challenge": "Challenge available",
+          "joined_challenge": "Participation confirmed",
+          "active_challenge": "Challenge in progress",
+          "inactive_challenge": "Connection lost"
         }
       },
       "connection_quality": { "name": "Connection Quality" },

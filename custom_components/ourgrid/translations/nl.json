@@ -70,11 +70,11 @@
       "challenge_status": {
         "name": "Uitdaging status",
         "state": {
-          "noChallenge": "Geen uitdaging",
-          "joinChallenge": "Uitdaging beschikbaar",
-          "joinedChallenge": "Deelname bevestigd",
-          "activeChallenge": "Uitdaging loopt",
-          "inactiveChallenge": "Verbinding verbroken"
+          "no_challenge": "Geen uitdaging",
+          "join_challenge": "Uitdaging beschikbaar",
+          "joined_challenge": "Deelname bevestigd",
+          "active_challenge": "Uitdaging loopt",
+          "inactive_challenge": "Verbinding verbroken"
         }
       },
       "connection_quality": { "name": "Verbindingskwaliteit" },
