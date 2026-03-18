@@ -67,7 +67,16 @@
       "challenge_points_current": { "name": "Punten laatste uitdaging" },
       "challenge_points": { "name": "Uitdagingspunten" },
       "peak_points": { "name": "Pieken vermeden" },
-      "challenge_status": { "name": "Uitdaging status" },
+      "challenge_status": {
+        "name": "Uitdaging status",
+        "state": {
+          "noChallenge": "Geen uitdaging",
+          "joinChallenge": "Uitdaging beschikbaar",
+          "joinedChallenge": "Deelname bevestigd",
+          "activeChallenge": "Uitdaging loopt",
+          "inactiveChallenge": "Verbinding verbroken"
+        }
+      },
       "connection_quality": { "name": "Verbindingskwaliteit" },
       "wifi_signal": { "name": "Wifi-signaal" }
     },

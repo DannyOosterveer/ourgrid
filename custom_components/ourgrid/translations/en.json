@@ -67,7 +67,16 @@
       "challenge_points_current": { "name": "Last Challenge Points" },
       "challenge_points": { "name": "Challenge Points" },
       "peak_points": { "name": "Peaks Avoided" },
-      "challenge_status": { "name": "Challenge Status" },
+      "challenge_status": {
+        "name": "Challenge Status",
+        "state": {
+          "noChallenge": "No challenge",
+          "joinChallenge": "Challenge available",
+          "joinedChallenge": "Participation confirmed",
+          "activeChallenge": "Challenge in progress",
+          "inactiveChallenge": "Connection lost"
+        }
+      },
       "connection_quality": { "name": "Connection Quality" },
       "wifi_signal": { "name": "Wi-Fi Signal" }
     },

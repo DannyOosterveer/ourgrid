@@ -117,6 +117,8 @@ SENSOR_DESCRIPTIONS: tuple[OurGridSensorEntityDescription, ...] = (
     OurGridSensorEntityDescription(
         key="challenge_status",
         translation_key="challenge_status",
+        device_class=SensorDeviceClass.ENUM,
+        options=["noChallenge", "joinChallenge", "joinedChallenge", "activeChallenge", "inactiveChallenge"],
         value_fn=lambda data: data.challenge_status,
     ),
     # Connectivity (diagnostic)
