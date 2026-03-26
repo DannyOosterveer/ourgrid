@@ -84,7 +84,7 @@ SENSOR_DESCRIPTIONS: tuple[OurGridSensorEntityDescription, ...] = (
         translation_key="challenge_earnings",
         device_class=SensorDeviceClass.MONETARY,
         native_unit_of_measurement="EUR",
-        state_class=SensorStateClass.TOTAL_INCREASING,
+        state_class=SensorStateClass.TOTAL,
         value_fn=lambda data: data.challenge_earnings,
     ),
     OurGridSensorEntityDescription(
