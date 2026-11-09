@@ -1,13 +1,20 @@
 {
   "domain": "ourgrid",
   "name": "OurGrid",
-  "codeowners": ["@dannyoosterveer"],
+  "categories": [
+    "energy.meters_monitoring"
+  ],
+  "codeowners": [
+    "@dannyoosterveer"
+  ],
   "config_flow": true,
   "documentation": "https://github.com/dannyoosterveer/ourgrid",
   "integration_type": "service",
   "iot_class": "cloud_polling",
   "issue_tracker": "https://github.com/dannyoosterveer/ourgrid/issues",
-  "loggers": ["custom_components.ourgrid"],
+  "loggers": [
+    "custom_components.ourgrid"
+  ],
   "requirements": [],
-  "version": "1.1.1"
+  "version": "1.1.2"
 }

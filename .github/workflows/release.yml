@@ -1,0 +1,24 @@
+name: Release
+
+on:
+  release:
+    types: [published]
+
+permissions:
+  contents: write
+
+jobs:
+  zip:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Check manifest version matches tag
+        run: |
+          v=$(jq -r .version custom_components/ourgrid/manifest.json)
+          [ "v$v" = "${{ github.event.release.tag_name }}" ] || { echo "manifest version $v != tag ${{ github.event.release.tag_name }}"; exit 1; }
+      - name: Create zip
+        run: cd custom_components/ourgrid && zip -r ../../ourgrid.zip . -x "__pycache__/*" "*.pyc"
+      - name: Upload to release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh release upload "${{ github.event.release.tag_name }}" ourgrid.zip --clobber
